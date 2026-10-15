@@ -4,9 +4,12 @@ __pycache__/
 .venv/
 venv/
 .env
-!.env.example
-references/*/
-!references/README.md
+/references/
+AGENTS.md
+opencode.json
+.env.example
+.opencode/
+project_plan.pdf
 .vscode/
 .idea/
 .DS_Store
