@@ -20,7 +20,6 @@ REQUIRED_FILES = [
     "requirements.txt",
     "requirements-dev.txt",
     ".gitignore",
-    ".env",
     ".env.example",
     "AGENTS.md",
     "opencode.json",
@@ -54,9 +53,11 @@ def test_required_skeleton_files_exist() -> None:
     assert not missing, f"missing skeleton files: {missing}"
 
 
-def test_env_file_is_empty() -> None:
-    """The committed `.env` must stay empty; real values live outside git."""
-    assert (ROOT / ".env").stat().st_size == 0
+def test_env_secrets_stay_out_of_git() -> None:
+    """The live `.env` must be gitignored while the example stays tracked."""
+    assert (ROOT / ".env.example").is_file()
+    gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8").splitlines()
+    assert ".env" in gitignore
 
 
 def test_opencode_config_parses_with_expected_servers() -> None:
@@ -95,7 +96,11 @@ def test_reference_checkouts_have_no_git_metadata() -> None:
     assert not nested, f"reference dirs contain .git: {nested}"
 
 
-def test_primary_reference_checkouts_exist() -> None:
-    """The research verdict requires semantic-router and setfit checkouts."""
-    for name in ("semantic-router", "setfit"):
-        assert (ROOT / "references" / name).is_dir(), f"missing references/{name}"
+def test_pull_script_covers_primary_references() -> None:
+    """The pull script must fetch the verdict-selected reference checkouts."""
+    script = (ROOT / "scripts" / "pull_references.sh").read_text(encoding="utf-8")
+    for url in (
+        "https://github.com/aurelio-labs/semantic-router.git",
+        "https://github.com/huggingface/setfit.git",
+    ):
+        assert url in script
