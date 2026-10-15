@@ -1,0 +1,40 @@
+[project]
+name = "slm-mlops"
+version = "0.1.0"
+description = "Structured Data Extraction Using Small Language Models"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "pydantic>=2",
+    "pydantic-settings",
+    "sqlglot",
+    "faiss-cpu",
+    "duckdb",
+    "scikit-learn",
+    "httpx",
+    "ollama",
+    "prometheus-client",
+    "opentelemetry-sdk",
+    "opentelemetry-instrumentation-fastapi",
+    "python-multipart",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov=src --cov-report=term-missing --cov-fail-under=80"
