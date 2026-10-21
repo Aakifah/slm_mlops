@@ -1,0 +1,33 @@
+{
+  "dataset": "sephora_pricing",
+  "features": {
+    "size_ml": {
+      "min": 0.01,
+      "max": 1292.36
+    },
+    "active_ingredient_count": {
+      "min": 0.0,
+      "max": 6.0
+    },
+    "concentration_rank": {
+      "min": 1.0,
+      "max": 1373.0
+    },
+    "loves_count": {
+      "min": 0.0,
+      "max": 1153594.0
+    },
+    "reviews_count": {
+      "min": 0.0,
+      "max": 16118.0
+    },
+    "average_rating": {
+      "min": 1.0,
+      "max": 5.0
+    },
+    "price_usd": {
+      "min": 3.0,
+      "max": 395.0
+    }
+  }
+}

@@ -35,6 +35,10 @@ line-length = 100
 strict = true
 python_version = "3.11"
 
+[[tool.mypy.overrides]]
+module = ["pandas", "sklearn", "sklearn.*"]
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --cov=src --cov-report=term-missing --cov-fail-under=80"

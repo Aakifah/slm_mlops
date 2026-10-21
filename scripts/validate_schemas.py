@@ -1,54 +1,109 @@
-"""Validate Pydantic schema contracts and SQLglot AST guardrails.
+"""Validate Pydantic schema contracts and on-disk artifact schemas.
 
-Skips gracefully when schema modules are not implemented yet.
-
-Returns:
-    None
+This standalone gate instantiates the artifact contracts against adversarial
+payloads and the committed JSON artifacts. It runs before pytest in the quality
+gate so malformed artifacts fail the build deterministically.
 """
 
 from __future__ import annotations
 
-import importlib
+import json
 import sys
+from collections.abc import Callable
+from pathlib import Path
+
+from pydantic import ValidationError
+
+_PROJECT_ROOT: Path = Path(__file__).resolve().parents[1]
+_ARTIFACTS_DIR: Path = _PROJECT_ROOT / "src" / "artifacts"
+
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
 
 
-def _try_import(module_name: str) -> tuple[bool, str]:
-    """Attempt to import a schema module.
+def _expect_validation_error(action: Callable[[], object]) -> None:
+    """Assert that an action raises a ``ValidationError``.
 
     Args:
-        module_name: Fully qualified module import path.
+        action: A callable that should raise ``ValidationError``.
 
-    Returns:
-        Tuple of import success flag and status message.
+    Raises:
+        AssertionError: If the action does not raise.
     """
     try:
-        importlib.import_module(module_name)
-        return True, f"found {module_name}"
-    except ModuleNotFoundError:
-        return False, f"missing {module_name}"
-    except Exception as exc:
-        return False, f"error importing {module_name}: {exc}"
+        action()
+    except ValidationError:
+        return
+    raise AssertionError("invalid payload was accepted")
+
+
+def _validate_contracts() -> None:
+    """Exercise the artifact contracts against valid and adversarial payloads."""
+    from src.backend.schemas.api import (
+        RAGChunk,
+        RAGChunkSchema,
+        RegressionScalerSchema,
+        ScalerBounds,
+    )
+
+    ScalerBounds.model_validate({"min": 0.0, "max": 1.0})
+    _expect_validation_error(lambda: ScalerBounds.model_validate({"min": 1.0, "max": 1.0}))
+    _expect_validation_error(lambda: ScalerBounds.model_validate({"min": 2.0, "max": 1.0}))
+
+    RegressionScalerSchema.model_validate(
+        {
+            "dataset": "sephora_pricing",
+            "features": {"price_usd": {"min": 3.0, "max": 395.0}},
+        }
+    )
+    _expect_validation_error(
+        lambda: RegressionScalerSchema.model_validate({"dataset": "unknown", "features": {}})
+    )
+
+    chunk = RAGChunk(
+        id="sephora_pricing.price_usd",
+        dataset="sephora_pricing",
+        text="price_usd: Product price in US dollars.",
+        columns=["price_usd"],
+        aliases=["price", "cost"],
+    )
+    RAGChunkSchema.model_validate({"chunks": [chunk.model_dump()]})
+    _expect_validation_error(
+        lambda: RAGChunkSchema.model_validate(
+            {
+                "chunks": [
+                    {"id": "x", "dataset": "unknown", "text": "t", "columns": [], "aliases": []}
+                ]
+            }
+        )
+    )
+
+
+def _validate_artifacts() -> None:
+    """Validate the committed JSON artifacts when they are present."""
+    from src.backend.schemas.api import RAGChunkSchema, RegressionScalerSchema
+
+    scaler_path = _ARTIFACTS_DIR / "regression_scaler.json"
+    chunks_path = _ARTIFACTS_DIR / "rag_chunks.json"
+    if scaler_path.exists():
+        payload = json.loads(scaler_path.read_text(encoding="utf-8"))
+        RegressionScalerSchema.model_validate(payload)
+    if chunks_path.exists():
+        payload = json.loads(chunks_path.read_text(encoding="utf-8"))
+        RAGChunkSchema.model_validate(payload)
 
 
 def main() -> int:
-    """Run schema validation or skip when schemas are absent.
+    """Run the standalone contract and artifact validation gate.
 
     Returns:
-        Process exit code with zero on success or skip.
+        The process exit code.
     """
-    candidates: list[str] = [
-        "src.backend.schemas.query",
-    ]
-    results: list[tuple[bool, str]] = [_try_import(name) for name in candidates]
-    found: list[str] = [message for ok, message in results if ok]
-    if not found:
-        print("validate_schemas: skip, src/ schemas not implemented yet")
-        return 0
-    for message in found:
-        print(f"validate_schemas: {message}")
+    _validate_contracts()
+    _validate_artifacts()
     print("validate_schemas: ok")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    raise SystemExit(main())

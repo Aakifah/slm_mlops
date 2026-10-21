@@ -4,12 +4,9 @@ __pycache__/
 .venv/
 venv/
 .env
-/references/
-AGENTS.md
-opencode.json
-.env.example
-.opencode/
-project_plan.pdf
+!.env.example
+references/*/
+!references/README.md
 .vscode/
 .idea/
 .DS_Store
@@ -17,6 +14,7 @@ Thumbs.db
 *.parquet
 faiss_store/
 *.pkl
+data/raw/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -24,3 +22,10 @@ faiss_store/
 coverage.xml
 htmlcov/
 *.log
+.opencode/
+
+# Artifacts are committed so Docker/CI never need network access at runtime
+!src/artifacts/faiss_store/
+!src/artifacts/**/*.parquet
+!src/artifacts/**/*.pkl
+

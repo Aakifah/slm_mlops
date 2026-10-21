@@ -1,0 +1,400 @@
+{
+  "chunks": [
+    {
+      "id": "sephora_pricing.overview",
+      "dataset": "sephora_pricing",
+      "text": "sephora_pricing dataset with columns: product_id, brand_name, product_category, size_ml, active_ingredient_count, concentration_rank, loves_count, reviews_count, average_rating, sephora_exclusive, clean_at_sephora, price_usd",
+      "columns": [
+        "product_id",
+        "brand_name",
+        "product_category",
+        "size_ml",
+        "active_ingredient_count",
+        "concentration_rank",
+        "loves_count",
+        "reviews_count",
+        "average_rating",
+        "sephora_exclusive",
+        "clean_at_sephora",
+        "price_usd"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "sephora_pricing.product_id",
+      "dataset": "sephora_pricing",
+      "text": "product_id: Unique product identifier. Aliases: id, sku",
+      "columns": [
+        "product_id"
+      ],
+      "aliases": [
+        "id",
+        "sku"
+      ]
+    },
+    {
+      "id": "sephora_pricing.brand_name",
+      "dataset": "sephora_pricing",
+      "text": "brand_name: Beauty brand name. Aliases: brand, maker, label, company",
+      "columns": [
+        "brand_name"
+      ],
+      "aliases": [
+        "brand",
+        "maker",
+        "label",
+        "company"
+      ]
+    },
+    {
+      "id": "sephora_pricing.product_category",
+      "dataset": "sephora_pricing",
+      "text": "product_category: Product category. Aliases: category, type, kind",
+      "columns": [
+        "product_category"
+      ],
+      "aliases": [
+        "category",
+        "type",
+        "kind"
+      ]
+    },
+    {
+      "id": "sephora_pricing.size_ml",
+      "dataset": "sephora_pricing",
+      "text": "size_ml: Product size in millilitres. Aliases: size, volume, ml, amount, quantity",
+      "columns": [
+        "size_ml"
+      ],
+      "aliases": [
+        "size",
+        "volume",
+        "ml",
+        "amount",
+        "quantity"
+      ]
+    },
+    {
+      "id": "sephora_pricing.active_ingredient_count",
+      "dataset": "sephora_pricing",
+      "text": "active_ingredient_count: Number of active ingredients in the formula. Aliases: active count, actives, ingredient count, how many actives",
+      "columns": [
+        "active_ingredient_count"
+      ],
+      "aliases": [
+        "active count",
+        "actives",
+        "ingredient count",
+        "how many actives"
+      ]
+    },
+    {
+      "id": "sephora_pricing.concentration_rank",
+      "dataset": "sephora_pricing",
+      "text": "concentration_rank: Rank of active ingredient concentration within its category. Aliases: concentration, strength, potency, rank",
+      "columns": [
+        "concentration_rank"
+      ],
+      "aliases": [
+        "concentration",
+        "strength",
+        "potency",
+        "rank"
+      ]
+    },
+    {
+      "id": "sephora_pricing.loves_count",
+      "dataset": "sephora_pricing",
+      "text": "loves_count: Number of user loves. Aliases: loves, favorites, likes, hearts",
+      "columns": [
+        "loves_count"
+      ],
+      "aliases": [
+        "loves",
+        "favorites",
+        "likes",
+        "hearts"
+      ]
+    },
+    {
+      "id": "sephora_pricing.reviews_count",
+      "dataset": "sephora_pricing",
+      "text": "reviews_count: Number of customer reviews. Aliases: reviews, review count, feedback",
+      "columns": [
+        "reviews_count"
+      ],
+      "aliases": [
+        "reviews",
+        "review count",
+        "feedback"
+      ]
+    },
+    {
+      "id": "sephora_pricing.average_rating",
+      "dataset": "sephora_pricing",
+      "text": "average_rating: Average product rating from one to five. Aliases: rating, stars, score, quality",
+      "columns": [
+        "average_rating"
+      ],
+      "aliases": [
+        "rating",
+        "stars",
+        "score",
+        "quality"
+      ]
+    },
+    {
+      "id": "sephora_pricing.sephora_exclusive",
+      "dataset": "sephora_pricing",
+      "text": "sephora_exclusive: Whether the product is exclusive to Sephora. Aliases: exclusive, only at sephora",
+      "columns": [
+        "sephora_exclusive"
+      ],
+      "aliases": [
+        "exclusive",
+        "only at sephora"
+      ]
+    },
+    {
+      "id": "sephora_pricing.clean_at_sephora",
+      "dataset": "sephora_pricing",
+      "text": "clean_at_sephora: Whether the product meets the clean standard. Aliases: clean, clean beauty",
+      "columns": [
+        "clean_at_sephora"
+      ],
+      "aliases": [
+        "clean",
+        "clean beauty"
+      ]
+    },
+    {
+      "id": "sephora_pricing.price_usd",
+      "dataset": "sephora_pricing",
+      "text": "price_usd: Product price in US dollars. Aliases: price, cost, usd, dollar, value, how much",
+      "columns": [
+        "price_usd"
+      ],
+      "aliases": [
+        "price",
+        "cost",
+        "usd",
+        "dollar",
+        "value",
+        "how much"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.overview",
+      "dataset": "skincare_compatibility",
+      "text": "skincare_compatibility dataset with columns: product_id, brand_name, product_category, primary_active, has_fragrance, has_alcohol_denat, comedogenic_rating, skin_type, skin_tone, compatibility_tier",
+      "columns": [
+        "product_id",
+        "brand_name",
+        "product_category",
+        "primary_active",
+        "has_fragrance",
+        "has_alcohol_denat",
+        "comedogenic_rating",
+        "skin_type",
+        "skin_tone",
+        "compatibility_tier"
+      ],
+      "aliases": []
+    },
+    {
+      "id": "skincare_compatibility.product_id",
+      "dataset": "skincare_compatibility",
+      "text": "product_id: Unique product identifier. Aliases: id, sku",
+      "columns": [
+        "product_id"
+      ],
+      "aliases": [
+        "id",
+        "sku"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.brand_name",
+      "dataset": "skincare_compatibility",
+      "text": "brand_name: Beauty brand name. Aliases: brand, maker, label, company",
+      "columns": [
+        "brand_name"
+      ],
+      "aliases": [
+        "brand",
+        "maker",
+        "label",
+        "company"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.product_category",
+      "dataset": "skincare_compatibility",
+      "text": "product_category: Skincare product category. Aliases: category, type, kind, moisturizer, serum, cleanser, sunscreen, toner, exfoliant",
+      "columns": [
+        "product_category"
+      ],
+      "aliases": [
+        "category",
+        "type",
+        "kind",
+        "moisturizer",
+        "serum",
+        "cleanser",
+        "sunscreen",
+        "toner",
+        "exfoliant"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.primary_active",
+      "dataset": "skincare_compatibility",
+      "text": "primary_active: Primary active ingredient in the formula. Aliases: active, key ingredient, star ingredient, actives, ingredient",
+      "columns": [
+        "primary_active"
+      ],
+      "aliases": [
+        "active",
+        "key ingredient",
+        "star ingredient",
+        "actives",
+        "ingredient"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.has_fragrance",
+      "dataset": "skincare_compatibility",
+      "text": "has_fragrance: Whether the formula contains fragrance. Aliases: fragrance, scented, perfume, scent",
+      "columns": [
+        "has_fragrance"
+      ],
+      "aliases": [
+        "fragrance",
+        "scented",
+        "perfume",
+        "scent"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.has_alcohol_denat",
+      "dataset": "skincare_compatibility",
+      "text": "has_alcohol_denat: Whether the formula contains denatured alcohol. Aliases: alcohol, denatured alcohol, drying alcohol, sd alcohol",
+      "columns": [
+        "has_alcohol_denat"
+      ],
+      "aliases": [
+        "alcohol",
+        "denatured alcohol",
+        "drying alcohol",
+        "sd alcohol"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.comedogenic_rating",
+      "dataset": "skincare_compatibility",
+      "text": "comedogenic_rating: Comedogenic rating from zero to five indicating pore-clogging potential. Aliases: comedogenic, pore clogging, pore-clogging, acne, breakout, clog",
+      "columns": [
+        "comedogenic_rating"
+      ],
+      "aliases": [
+        "comedogenic",
+        "pore clogging",
+        "pore-clogging",
+        "acne",
+        "breakout",
+        "clog"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.skin_type",
+      "dataset": "skincare_compatibility",
+      "text": "skin_type: Skin type. Aliases: skin, oily, dry, combination, sensitive",
+      "columns": [
+        "skin_type"
+      ],
+      "aliases": [
+        "skin",
+        "oily",
+        "dry",
+        "combination",
+        "sensitive"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.skin_tone",
+      "dataset": "skincare_compatibility",
+      "text": "skin_tone: Skin tone. Aliases: tone, shade, complexion",
+      "columns": [
+        "skin_tone"
+      ],
+      "aliases": [
+        "tone",
+        "shade",
+        "complexion"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.compatibility_tier",
+      "dataset": "skincare_compatibility",
+      "text": "compatibility_tier: Compatibility tier indicating whether the product is safe for a skin profile. Aliases: compatibility, safe, irritation, holy grail, holy_grail_safe, irritation risk",
+      "columns": [
+        "compatibility_tier"
+      ],
+      "aliases": [
+        "compatibility",
+        "safe",
+        "irritation",
+        "holy grail",
+        "holy_grail_safe",
+        "irritation risk"
+      ]
+    },
+    {
+      "id": "sephora_pricing.price_usd",
+      "dataset": "sephora_pricing",
+      "text": "price_usd: Product price in US dollars. Aliases: dupe, overpriced, luxury tax, affordable, cheap, expensive, bargain",
+      "columns": [
+        "price_usd"
+      ],
+      "aliases": [
+        "dupe",
+        "overpriced",
+        "luxury tax",
+        "affordable",
+        "cheap",
+        "expensive",
+        "bargain"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.comedogenic_rating",
+      "dataset": "skincare_compatibility",
+      "text": "comedogenic_rating: Comedogenic rating from zero to five indicating pore-clogging potential. Aliases: pore-clogging, acne-safe, non-comedogenic, won't break me out, breakout",
+      "columns": [
+        "comedogenic_rating"
+      ],
+      "aliases": [
+        "pore-clogging",
+        "acne-safe",
+        "non-comedogenic",
+        "won't break me out",
+        "breakout"
+      ]
+    },
+    {
+      "id": "skincare_compatibility.compatibility_tier",
+      "dataset": "skincare_compatibility",
+      "text": "compatibility_tier: Compatibility tier indicating whether the product is safe for a skin profile. Aliases: safe for my skin, will this irritate, holy grail, irritation, good for me",
+      "columns": [
+        "compatibility_tier"
+      ],
+      "aliases": [
+        "safe for my skin",
+        "will this irritate",
+        "holy grail",
+        "irritation",
+        "good for me"
+      ]
+    }
+  ]
+}
