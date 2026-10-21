@@ -23,6 +23,7 @@ coverage.xml
 htmlcov/
 *.log
 .opencode/
+docs/
 
 # Artifacts are committed so Docker/CI never need network access at runtime
 !src/artifacts/faiss_store/
