@@ -13,7 +13,7 @@ dependencies = [
     "duckdb",
     "scikit-learn",
     "catboost",
-    "xgboost",
+    "xgboost<3.3",
     "pandas",
     "pyarrow",
     "numpy",
