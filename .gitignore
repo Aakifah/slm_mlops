@@ -24,6 +24,7 @@ htmlcov/
 *.log
 .opencode/
 docs/
+catboost_info/
 
 # Artifacts are committed so Docker/CI never need network access at runtime
 !src/artifacts/faiss_store/

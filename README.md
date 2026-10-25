@@ -55,6 +55,44 @@ python -m src.model_customization.rag.index_faiss
 Set `SLM_MLOPS_OFFLINE=1` to force the deterministic synthetic fallback (used by
 offline CI unit tests). All outputs are written read-only into `src/artifacts/`.
 
+## Milestone 2: Model Selection
+
+Three open-weight SLMs are selected for inference-time customization, alongside
+five traditional ML baselines trained on the 70/15/15 splits.
+
+**SLM backbones (served via Ollama)**
+
+| Model | Role |
+| :--- | :--- |
+| `mistral:7b` | Baseline instruction-following |
+| `qwen2.5:7b` | High SQL-accuracy backbone |
+| `llama3.2` | Low-latency backbone |
+| `nomic-embed-text` | Embeddings for RAG, cache, and intent routing |
+
+Runtime configuration is centralized in `src/config.py` (Pydantic-settings) and
+validates `OLLAMA_HOST` / `OLLAMA_USER` / `OLLAMA_PASS` at startup.
+
+**Traditional ML baselines** (`ml_baseline.py`, `train_all_models.py`)
+
+| Model | Classification (test accuracy) |
+| :--- | ---: |
+| Random Forest | 98.65% |
+| Gradient Boosting | 99.01% |
+| XGBoost | 99.55% |
+| CatBoost | 99.55% |
+| Stacking ensemble | 99.64% |
+
+Classification is near-perfect because `compatibility_tier` is a deterministic
+function of the engineered features; single-point `price_usd` regression is
+harder (test MAPE ~33-44%) and is reported in
+`src/artifacts/evaluation_results/ml_baseline_metrics.json`.
+
+```bash
+python -m src.evaluator.train_all_models
+```
+
+Fitted pipelines are persisted to `src/artifacts/models/`.
+
 ## How it works (target architecture)
 
 1. **Intent routing** — classify each question as a single-record prediction or
@@ -69,7 +107,8 @@ offline CI unit tests). All outputs are written read-only into `src/artifacts/`.
 
 ## Stack
 
-FastAPI · Pydantic v2 · SQLGlot · FAISS · DuckDB · scikit-learn · Ollama
+FastAPI · Pydantic v2 · SQLGlot · FAISS · DuckDB · scikit-learn · XGBoost ·
+CatBoost · Ollama
 (`mistral:7b`, `qwen2.5:7b`, `llama3.2`) · React/Vite · Prometheus/Grafana ·
 OpenTelemetry · Docker Compose
 

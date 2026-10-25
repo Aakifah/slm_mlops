@@ -6,6 +6,8 @@ depends on network access or a live Ollama instance.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pandas as pd
 import pytest
 
@@ -146,3 +148,20 @@ def test_deduplicate_exact_removes_duplicates() -> None:
     frame_with_dupes = pd.concat([pricing, duplicated], ignore_index=True)
     deduped = deduplicate_exact(frame_with_dupes)
     assert len(deduped) == len(pricing)
+
+
+def test_main_offline_writes_artifacts(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    """The full pipeline must write every artifact when run offline."""
+    import src.data_preprocessing.preprocessing.main as pipeline
+
+    monkeypatch.setenv("SLM_MLOPS_OFFLINE", "1")
+    monkeypatch.setattr(pipeline, "ARTIFACTS_DIR", tmp_path)
+    monkeypatch.setattr(pipeline, "FAISS_STORE_DIR", tmp_path / "faiss_store")
+    monkeypatch.setattr(pipeline, "RAG_CHUNKS_PATH", tmp_path / "rag_chunks.json")
+    monkeypatch.setattr(pipeline, "REGRESSION_SCALER_PATH", tmp_path / "regression_scaler.json")
+
+    assert pipeline.main() == 0
+    assert (tmp_path / "skincare_train.parquet").exists()
+    assert (tmp_path / "pricing_test.parquet").exists()
+    assert (tmp_path / "regression_scaler.json").exists()
+    assert (tmp_path / "rag_chunks.json").exists()

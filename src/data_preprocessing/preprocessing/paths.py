@@ -14,6 +14,8 @@ PROJECT_ROOT: Path = Path(__file__).resolve().parents[3]
 ARTIFACTS_DIR: Path = PROJECT_ROOT / "src" / "artifacts"
 RAW_DATA_DIR: Path = PROJECT_ROOT / "data" / "raw"
 FAISS_STORE_DIR: Path = ARTIFACTS_DIR / "faiss_store"
+MODELS_DIR: Path = ARTIFACTS_DIR / "models"
+EVALUATION_RESULTS_DIR: Path = ARTIFACTS_DIR / "evaluation_results"
 
 REGRESSION_SCALER_PATH: Path = ARTIFACTS_DIR / "regression_scaler.json"
 RAG_CHUNKS_PATH: Path = ARTIFACTS_DIR / "rag_chunks.json"

@@ -1,0 +1,51 @@
+{
+  "classification": {
+    "random_forest": {
+      "val_accuracy": 0.9919064748201439,
+      "test_accuracy": 0.9865107913669064
+    },
+    "gradient_boosting": {
+      "val_accuracy": 0.9946043165467626,
+      "test_accuracy": 0.9901079136690647
+    },
+    "xgboost": {
+      "val_accuracy": 1.0,
+      "test_accuracy": 0.9955035971223022
+    },
+    "catboost": {
+      "val_accuracy": 1.0,
+      "test_accuracy": 0.9955035971223022
+    },
+    "stacking": {
+      "val_accuracy": 1.0,
+      "test_accuracy": 0.9964028776978417
+    }
+  },
+  "regression": {
+    "random_forest": {
+      "val_mape": 33.84426009803206,
+      "test_mape": 33.33211985713553,
+      "test_rmse": 25.31444706490107
+    },
+    "gradient_boosting": {
+      "val_mape": 44.737892013778215,
+      "test_mape": 43.774105642398204,
+      "test_rmse": 28.120524218338527
+    },
+    "xgboost": {
+      "val_mape": 37.5308788214454,
+      "test_mape": 36.92821079692318,
+      "test_rmse": 27.509152542203772
+    },
+    "catboost": {
+      "val_mape": 42.31932417990898,
+      "test_mape": 41.63500044921302,
+      "test_rmse": 26.790292219040733
+    },
+    "stacking": {
+      "val_mape": 39.75566201327528,
+      "test_mape": 39.352199302869096,
+      "test_rmse": 25.3935308757559
+    }
+  }
+}
