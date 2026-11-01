@@ -12,6 +12,7 @@ dependencies = [
     "faiss-cpu",
     "duckdb",
     "scikit-learn",
+    "joblib",
     "catboost",
     "xgboost<3.3",
     "pandas",
@@ -42,7 +43,7 @@ strict = true
 python_version = "3.11"
 
 [[tool.mypy.overrides]]
-module = ["pandas", "sklearn", "sklearn.*", "faiss", "huggingface_hub", "joblib", "catboost"]
+module = ["pandas", "sklearn", "sklearn.*", "faiss", "huggingface_hub", "joblib", "catboost", "ollama"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
